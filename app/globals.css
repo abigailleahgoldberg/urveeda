@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gold: #b8982a;
+  --gold-light: #d4af4a;
+  --gold-pale: #e8d48a;
+  --charcoal: #0e0e0e;
+  --charcoal-mid: #161616;
+  --charcoal-light: #1f1f1f;
+  --stone: #2a2a2a;
+  --mist: #6b6b6b;
+  --fog: #a0a0a0;
+  --cream: #f4f0e8;
+  --white: #fafafa;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--charcoal);
+  color: var(--cream);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.display {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.gold { color: var(--gold-light); }
+.gold-border { border-color: var(--gold); }
+
+.section-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Divider line */
+.rule {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem 0;
+}
+
+/* Pill tag */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(184,152,42,0.3);
+  border-radius: 100px;
+  padding: 0.35rem 1rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+/* Animated gradient background for hero */
+.hero-gradient {
+  background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(184,152,42,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 40% at 80% 100%, rgba(184,152,42,0.06) 0%, transparent 60%),
+              var(--charcoal);
+}
+
+/* Card */
+.card {
+  background: var(--charcoal-mid);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 2px;
+  transition: border-color 0.3s ease;
+}
+.card:hover {
+  border-color: rgba(184,152,42,0.25);
+}
+
+/* Button styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--gold);
+  color: var(--charcoal);
+  padding: 0.85rem 2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 1px;
+  transition: background 0.2s ease;
+}
+.btn-primary:hover { background: var(--gold-light); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid rgba(184,152,42,0.5);
+  color: var(--gold-light);
+  padding: 0.85rem 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 1px;
+  transition: all 0.2s ease;
+}
+.btn-outline:hover {
+  border-color: var(--gold-light);
+  background: rgba(184,152,42,0.07);
+}
+
+/* S4E step connector */
+.s4-step {
+  position: relative;
+}
+.s4-step::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+  background: linear-gradient(to bottom, transparent, rgba(184,152,42,0.4), transparent);
+}
+.s4-step:last-child::after { display: none; }
+
+/* Smooth fade-in utility */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.7s ease forwards; }
