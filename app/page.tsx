@@ -73,20 +73,15 @@ export default function Home() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      await fetch("https://www.thevoiceofcash.com/api/crm/prospect", {
+      await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          business_name: formData.company || formData.name,
-          contact_name: formData.name,
+          name: formData.name,
           email: formData.email,
-          source: "urveeda_contact",
-          assigned_to: "david",
-          intake_context: {
-            message: formData.message,
-            s4_stage_interest: formData.stage,
-            source_url: "urveeda.com",
-          },
+          company: formData.company,
+          message: formData.message,
+          stage: formData.stage,
         }),
       });
       setSubmitted(true);
